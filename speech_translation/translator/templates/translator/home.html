@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>語音翻譯</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>語音翻譯</h1>
+    <button id="start">開始翻譯</button>
+    <button id="stop">停止翻譯</button>
+    <div id="result">
+        <p>原文：<span id="original"></span></p>
+        <p>英文翻譯：<span id="english"></span></p>
+        <p>日文翻譯：<span id="japanese"></span></p>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        $('#start').click(function() {
+            $.get('/start/', function(data) {
+                console.log('Translation started');
+                pollForTranslation();
+            });
+        });
+
+        $('#stop').click(function() {
+            $.get('/stop/', function(data) {
+                console.log('Translation stopped');
+            });
+        });
+
+        function pollForTranslation() {
+            $.get('/get_translation/', function(data) {
+                if (data.status !== 'no_data') {
+                    $('#original').text(data.original);
+                    $('#english').text(data.english);
+                    $('#japanese').text(data.japanese);
+                }
+                setTimeout(pollForTranslation, 1000);
+            });
+        }
+    });
+    </script>
+</body>
+</html>

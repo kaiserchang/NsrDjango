@@ -2,7 +2,7 @@
 
 這是一個預備用於線上會議即時翻譯的先期測試 Django 網頁小程式，旨在測試如何使用 `speech_recognition` 模組來實現語音辨識功能。本程式利用 Google 語音辨識 API（免費）來將語音轉換為文字，並在說話停頓後輸出辨識與翻譯結果。
 
-![圖片描述](https://kaiserchang.github.io/img/sr_Django_v1.png)
+<img src="https://kaiserchang.github.io/img/sr_Django_v1.png" width="50%">
 
 
 ## 功能
